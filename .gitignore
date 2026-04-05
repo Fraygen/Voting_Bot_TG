@@ -1,0 +1,6 @@
+*.db
+.env
+venv_mint/
+__pycache__/
+.vscode/
+web/
