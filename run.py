@@ -5,10 +5,11 @@ from settings import config
 from aiogram.types import BotCommand
 from tables.database import engine, Base
 from redis.asyncio import Redis
+from settings import config
 
 bot = Bot(token=config.TOKEN)
 dp = Dispatcher()
-redis_client = Redis(host="localhost", port=6379, decode_responses=True) 
+redis_client = Redis.from_url(config.REDIS_URL) 
 
 async def init_db():
     async with engine.begin() as conn:

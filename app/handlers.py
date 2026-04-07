@@ -4,12 +4,13 @@ from aiogram.filters import Command, CommandStart
 from aiogram.types import Message, CallbackQuery, InputMediaPhoto
 import app.keyboards as kb
 from redis.asyncio import Redis
+from settings import config
 from tables.crud import (user_state, save_user_state, get_contestants,
                           add_vote, has_voted, del_vote, get_cont_name)
 
 
 router = Router()
-r = Redis(host="localhost", port=6379, decode_responses=True)
+r = Redis.from_url(config.REDIS_URL)
 
 @router.message(CommandStart())
 async def cmd_start(message: Message):
